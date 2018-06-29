@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  activity_id: 1
+  user_id: 1
+  is_private: false
+  title: MyString
+  content: MyText
+  mentorship_id: 1
+
+two:
+  activity_id: 1
+  user_id: 1
+  is_private: false
+  title: MyString
+  content: MyText
+  mentorship_id: 1
