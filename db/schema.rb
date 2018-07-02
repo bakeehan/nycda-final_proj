@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_29_192614) do
+ActiveRecord::Schema.define(version: 2018_06_29_213402) do
 
   create_table "achievements", force: :cascade do |t|
     t.integer "activity_id"
     t.integer "user_id"
-    t.boolean "is_private"
+    t.boolean "is_private", default: false
     t.string "title"
     t.text "content"
     t.integer "mentorship_id"
@@ -49,12 +49,12 @@ ActiveRecord::Schema.define(version: 2018_06_29_192614) do
 
   create_table "mentorships", force: :cascade do |t|
     t.string "title"
-    t.boolean "is_complete"
+    t.boolean "is_complete", default: false
     t.date "end_date"
     t.integer "bracket_id"
-    t.string "teacher_type"
+    t.string "teacher_type", default: "User"
     t.integer "teacher_id"
-    t.string "student_type"
+    t.string "student_type", default: "User"
     t.integer "student_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 2018_06_29_192614) do
 
   create_table "users", force: :cascade do |t|
     t.string "displayname"
-    t.boolean "is_admin"
+    t.boolean "is_admin", default: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
