@@ -14,11 +14,11 @@
 <nav>
   <% if user_signed_in? %>
     <a href="/">home</a> --
-    <% if Mentorship.where("student_id" => current_user.id).where("is_complete" => false) %>
+    <% if Mentorship.where("is_complete" => false).where("student_id" => current_user.id)[0] %>
       <a href="/journeys">your journeys</a> -
       <a href="/assignments">assignments</a> --
     <% end %>
-    <% if Mentorship.where("teachcer_id" => current_user.id).where("is_complete" => false) %>
+    <% if Mentorship.where("is_complete" => false).where("teacher_id" => current_user.id)[0] %>
       <a href="/students">your students</a> --
     <% end %>
     <% if current_user.is_admin? %>
