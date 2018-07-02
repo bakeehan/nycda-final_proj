@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_29_213402) do
+ActiveRecord::Schema.define(version: 2018_07_02_155932) do
 
   create_table "achievements", force: :cascade do |t|
     t.integer "activity_id"
@@ -58,6 +58,8 @@ ActiveRecord::Schema.define(version: 2018_06_29_213402) do
     t.integer "student_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "level"
+    t.string "level_name"
     t.index ["student_type", "student_id"], name: "index_mentorships_on_student_type_and_student_id"
     t.index ["teacher_type", "teacher_id"], name: "index_mentorships_on_teacher_type_and_teacher_id"
   end

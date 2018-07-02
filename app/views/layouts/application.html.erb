@@ -11,15 +11,27 @@
 
   <body>
 
-<% if user_signed_in? %>
-  <li>
-  <%= link_to('Logout', destroy_user_session_path, method: :delete) %>        
-  </li>
-<% else %>
-  <li>
-  <%= link_to('Login', new_user_session_path)  %>  
-  </li>
-<% end %>
+<nav>
+  <% if user_signed_in? %>
+    <a href="/">home</a> --
+    <% if Mentorship.where("student_id" => current_user.id).where("is_complete" => false) %>
+      <a href="/journeys">your journeys</a> -
+      <a href="/assignments">assignments</a> --
+    <% end %>
+    <% if Mentorship.where("teachcer_id" => current_user.id).where("is_complete" => false) %>
+      <a href="/students">your students</a> --
+    <% end %>
+    <% if current_user.is_admin? %>
+      <a href="/admin">admin options</a> --
+    <% end %>
+    <a href="/user/<%= current_user.id %>">profile</a> --
+    <%= link_to('logout', destroy_user_session_path, method: :delete) %>   
+  <% else %>
+    <%= link_to('login', new_user_session_path)  %>  
+  <% end %>
+</nav>
+
     <%= yield %>
+
   </body>
 </html>
