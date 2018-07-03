@@ -1,0 +1,10 @@
+<h1>Achievements#index</h1>
+<p>Find me in app/views/achievements/index.html.erb</p>
+
+<% @achievements.each do |nice| %>
+	<a href="/achievements/<%= nice.id %>"><%= nice.title %></a>
+	<% if current_user.id == nice.user_id %>
+		[<a href="/achievements/<%= nice.id %>/edit">edit</a>]
+	<% end %>
+	<hr>
+<% end %>

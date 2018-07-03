@@ -14,7 +14,7 @@
 <nav>
   <% if user_signed_in? %>
     <a href="/">home</a> --
-    <% if Mentorship.where("is_complete" => false).where("student_id" => current_user.id)[0] %>
+    <% if current_user.mentorships.where("is_complete" => false)[0] %>
       <a href="/journeys">your journeys</a> -
       <a href="/assignments">assignments</a> --
     <% end %>

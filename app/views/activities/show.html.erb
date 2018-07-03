@@ -1,0 +1,16 @@
+<h1>Activities#show</h1>
+<p>Find me in app/views/activities/show.html.erb</p>
+
+<%= @activity.title %>
+<br>
+<%= @bracket.title %>
+
+<hr>
+
+<%= @activity.description %>
+
+<hr>
+
+<% if current_user.is_admin? %>
+	<%= link_to "edit", edit_activity_path %>
+<% end %>

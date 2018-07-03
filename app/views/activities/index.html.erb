@@ -1,0 +1,10 @@
+<h1>Activities#index</h1>
+<p>Find me in app/views/activities/index.html.erb</p>
+
+<% @activities.each do |act| %>
+	<a href="/activities/<%= act.id %>"><%= act.title %></a>
+	<% if current_user.is_admin? %>
+		[<a href="/activities/<%= act.id %>/edit">edit</a>]
+	<% end %>
+	<hr>
+<% end %>

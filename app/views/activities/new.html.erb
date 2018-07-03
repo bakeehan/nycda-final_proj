@@ -1,0 +1,21 @@
+<h1>Activities#new</h1>
+<p>Find me in app/views/activities/new.html.erb</p>
+
+<%= form_for @activity do |f| %>
+
+	title <%= f.text_area :title %>
+
+	<hr>
+
+	<%= select_tag(:bracket_id, options_from_collection_for_select(Bracket.all, :id, :title), include_blank: "What branch?") %>
+
+	<hr>
+
+	description
+	<%= text_area(:description, :text, size: "50x10") %>
+
+	<hr>
+
+	<%= f.submit "create" %>
+
+<% end %>

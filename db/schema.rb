@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_02_155932) do
+ActiveRecord::Schema.define(version: 2018_07_03_143110) do
 
   create_table "achievements", force: :cascade do |t|
     t.integer "activity_id"
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 2018_07_02_155932) do
     t.integer "bracket_id"
     t.string "title"
     t.text "description"
-    t.text "build_array"
+    t.text "build_array", default: "[[\"text_area\", \"content\"]]"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
