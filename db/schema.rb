@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_03_200448) do
+ActiveRecord::Schema.define(version: 2018_07_09_143020) do
 
   create_table "achievements", force: :cascade do |t|
     t.integer "activity_id"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 2018_07_03_200448) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "level_system", default: "['beginner','intermediate','advanced']"
+    t.string "avatar"
   end
 
   create_table "comments", force: :cascade do |t|

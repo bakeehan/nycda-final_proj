@@ -1,2 +1,21 @@
 <h1>Brackets#new</h1>
 <p>Find me in app/views/brackets/new.html.erb</p>
+
+<%= form_for @bracket do |f| %>
+
+	title <%= f.text_field :title %>
+
+	<hr>
+
+	<%= f.file_field :avatar %>
+
+	<hr>
+
+	description<br>
+	<%= text_area(:description, :text, size: "50x10") %>
+
+	<hr>
+
+	<%= f.submit "create" %>
+
+<% end %>
