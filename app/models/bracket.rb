@@ -1,5 +1,5 @@
 class Bracket < ApplicationRecord
-	serialize :level_system
+	serialize :level_system, Array
 	has_many :mentorships
 	has_many :activities
 	has_many :students, :through => :mentorships, source_type: "User"

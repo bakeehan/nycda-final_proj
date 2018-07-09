@@ -1,2 +1,35 @@
 <h1>Achievements#show</h1>
 <p>Find me in app/views/achievements/show.html.erb</p>
+
+<h2><%= @achievement.title %></h2>
+
+<% if @achievement.is_private? %>
+	private!
+<% end %>
+
+<h3>fulfilling <i><%= @achievement.activity.title %></i> for <b><%= @achievement.mentorship.title %></b></h3>
+
+<p><%= @achievement.content %></p>
+
+<% if @achievement.user == current_user %>
+
+	<a href="/achievements/<%= @achievement.id %>/edit">edit</a>
+
+<% end %>
+
+<% if @achievement.comments %>
+	<% @achievement.comments.each do |comment| %>
+		<%= comment.user.displayname %> said: 
+		<%= comment.content %><br>
+	<% end %>
+<% end %>
+
+<% if @achievement.mentorship.teacher == current_user %>
+
+	<%= form_for @new_comment, :url => '/comment' do |f| %>
+		<%= f.text_field :content %>
+		<%= hidden_field_tag :achievement_id, @achievement.id %>
+		<%= f.submit "comment" %>
+	<% end %>
+
+<% end %>

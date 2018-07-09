@@ -3,16 +3,16 @@
 
 <%= form_for @activity do |f| %>
 
-	title <%= f.text_area :title %>
+	title <%= f.text_field :title %>
 
 	<hr>
 
-	<%= select_tag(:bracket_id, options_from_collection_for_select(Bracket.all, :id, :title), include_blank: "What branch?") %>
+	bracket: <%= @activity.bracket.title %>
 
 	<hr>
 
-	description
-	<%= text_area(:description, :text, size: "50x10") %>
+	description<br>
+	<%= text_area(:description, :text, size: "50x10", value: @activity.description) %>
 
 	<hr>
 

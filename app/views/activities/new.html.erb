@@ -3,7 +3,7 @@
 
 <%= form_for @activity do |f| %>
 
-	title <%= f.text_area :title %>
+	title <%= f.text_field :title %>
 
 	<hr>
 
@@ -11,7 +11,7 @@
 
 	<hr>
 
-	description
+	description<br>
 	<%= text_area(:description, :text, size: "50x10") %>
 
 	<hr>

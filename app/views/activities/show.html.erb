@@ -5,12 +5,54 @@
 <br>
 <%= @bracket.title %>
 
-<hr>
+<br>
 
 <%= @activity.description %>
 
-<hr>
+<% if @mentorship.activities.where("id" => @activity.id).length > 0 && current_user == @mentorship.student %>
+
+	<hr>
+
+	<%= form_for @submit_it, :url => '/achieve' do |f| %>
+
+		<h3>submit</h3>
+
+		title <%= f.text_field :title %>
+
+		<%= hidden_field_tag :activity_id, @activity.id %>
+
+		<br>
+		<%= text_area(:content, :text, size: "50x10") %>
+
+		<br>
+		is this a private submission?
+		<%= select_tag(:is_private, options_for_select([['No', false], ['Yes', true]]))%>
+
+		<br>
+
+		<%= f.submit "create" %>
+
+	<% end %>
+
+<% end %>
+
+<% if @bracket.mentorships.where("teacher" => current_user).length > 0 %>
+
+	<hr>
+
+	<h3>your students' submissions</h3>
+
+	<% @activity.achievements.each do |submission| %>
+
+		<% if submission.mentorship.teacher == current_user %>
+			<a href="/achievements/<%= submission.id %>"><%= submission.title %></a>, by <%= submission.user.displayname %><br>
+		<% end %>
+
+	<% end %>
+
+<% end %>
 
 <% if current_user.is_admin? %>
+	<hr>
 	<%= link_to "edit", edit_activity_path %>
 <% end %>

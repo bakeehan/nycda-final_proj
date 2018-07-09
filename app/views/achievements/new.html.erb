@@ -3,7 +3,7 @@
 
 <%= form_for @achievement do |f| %>
 
-	<%= select_tag(:activity_id, options_from_collection_for_select(Activity.all, :id, :title), include_blank: "What activity are you completing?") %>
+	<%= select_tag(:activity_id, options_from_collection_for_select(Mentorship.find(cookies[:mentorship_id].to_i).activities, :id, :title), include_blank: "What activity are you completing?") %>
 
 	<hr>
 
@@ -12,7 +12,7 @@
 
 	<hr>
 
-	title <%= f.text_area :title %>
+	title <%= f.text_field :title %>
 
 	<hr>
 

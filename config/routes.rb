@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
   get 'user/:id' => "users#show"
-  get 'journeys' => "users#index"
+  get 'journeys' => "student#index"
   get 'journey/:id' => "users#mentorship"
 
   resources :brackets
@@ -19,5 +19,8 @@ Rails.application.routes.draw do
 
   get 'assignments' => "student#index"
   get 'comments' => "student#feedback"
+
+  post '/comment' => "comments#create"
+  post '/achieve' => "achievements#create"
 
 end

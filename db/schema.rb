@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_03_183611) do
+ActiveRecord::Schema.define(version: 2018_07_03_200448) do
 
   create_table "achievements", force: :cascade do |t|
     t.integer "activity_id"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 2018_07_03_183611) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "level"
   end
 
   create_table "brackets", force: :cascade do |t|
@@ -36,7 +37,7 @@ ActiveRecord::Schema.define(version: 2018_07_03_183611) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "level_system", default: "[[1,'beginner'],[2,'intermediate'],[3,'advanced']]"
+    t.text "level_system", default: "['beginner','intermediate','advanced']"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -58,7 +59,7 @@ ActiveRecord::Schema.define(version: 2018_07_03_183611) do
     t.integer "student_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "level"
+    t.integer "level", default: 0
     t.index ["student_type", "student_id"], name: "index_mentorships_on_student_type_and_student_id"
     t.index ["teacher_type", "teacher_id"], name: "index_mentorships_on_teacher_type_and_teacher_id"
   end

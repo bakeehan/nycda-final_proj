@@ -1,2 +1,36 @@
 <h1>Student#index</h1>
 <p>Find me in app/views/student/index.html.erb</p>
+
+<% @mentorships.each do |journey| %>
+	
+	<%= journey.title %>
+
+	<% if journey.is_complete? %>
+		<i>completed on <%= journey.end_date.strftime("%B %e, %Y") %></i>
+	<% else %>
+		<i><%= journey.bracket.level_system[journey.level] %></i>
+	<% end %>
+
+	<hr>
+
+	<%= journey.bracket.title %>
+
+	<P>
+		<%= journey.bracket.description %>
+	</P>
+
+	<hr>
+
+	<%= journey.teacher.displayname %>
+
+	<hr>
+
+	<% journey.activities.each do |activity| %>
+		<a href="/activities/<%= activity.id %>"><%= activity.title %></a>
+			<% if !journey.is_complete? && activity.achievements.where("user_id" => journey.student_id)[0] %>
+				<i class="fas fa-check"></i>
+			<%end%>
+		<br>
+	<% end %>
+
+<% end %>
