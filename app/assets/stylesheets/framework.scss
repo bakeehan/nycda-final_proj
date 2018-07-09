@@ -1,0 +1,48 @@
+@import 'variables';
+
+body {
+	font-family: $body-font;
+	font-size:14px;
+	background-color: $lightest;
+}
+
+nav .img-holder {
+	border-radius: 100%;
+	overflow: hidden;
+	width:75px;
+	height:75px;
+	padding:0;
+}
+
+nav .img-holder img {
+	width:100%;
+}
+
+
+/* GREYS GRADIENT */
+
+#greydient {
+	width:100%;
+	position:fixed;
+	bottom:0;
+	left:0;
+	z-index: -1;
+}
+
+.greydients {
+	height:125px;
+}
+
+.gr-one {
+	background-color:#EFEFEF;
+}
+
+.gr-two {
+	background-color:#E8E8E8;
+}
+.gr-three {
+	background-color:#DEDEDE;
+}
+.gr-four {
+	background-color:#CCC;
+}
