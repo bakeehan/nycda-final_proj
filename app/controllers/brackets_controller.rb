@@ -32,7 +32,7 @@ class BracketsController < ApplicationController
   private
 
 	def bracket_params
-    	params.require(:bracket).permit(:title, :description, :level_system, :avatar)
+    	params.require(:bracket).permit(:title, :description, :level_system, :icon)
 	end
 
 end

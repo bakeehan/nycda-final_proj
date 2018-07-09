@@ -6,5 +6,5 @@ class Bracket < ApplicationRecord
 	has_many :teachers, :through => :mentorships, source_type: "User"
 	has_many :achievements, :through => :activities
 	has_many :comments, :through => :achievements
-	mount_uploader :avatar, AvatarUploader
+	mount_uploader :icon, IconUploader
 end

@@ -3,7 +3,7 @@
 
 <% @brackets.each do |b| %>
 	<%= b.title %><br>
-	<%if !b.avatar.file.nil? %>
-		<img src="<%= b.avatar.url %>">
+	<%if !b.icon.file.nil? %>
+		<img src="<%= b.icon.url %>">
 	<% end %>
 <% end %>

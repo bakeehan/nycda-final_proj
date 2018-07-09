@@ -13,9 +13,9 @@ class ActivitiesController < ApplicationController
   def new
   	if current_user.is_admin?
 	    @activity = Activity.new
-	else
-		redirect_to "/"
-	end
+  	else
+  		redirect_to "/"
+  	end
   end
 
   def create
@@ -31,9 +31,9 @@ class ActivitiesController < ApplicationController
   def edit
   	if current_user.is_admin?
 	    @activity = Activity.find(params[:id])
-	else
-		redirect_to "/"
-	end
+  	else
+  		redirect_to "/"
+  	end
   end
 
   def update
