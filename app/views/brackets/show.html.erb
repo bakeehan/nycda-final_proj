@@ -1,2 +1,33 @@
-<h1>Brackets#show</h1>
-<p>Find me in app/views/brackets/show.html.erb</p>
+<h2><%= @bracket.title %></h2>
+
+<p><%= @bracket.description %></p>
+
+<div class="bracket-av"><img src="<%= @bracket.icon.url %>"></div>
+
+<h3>teachers</h3>
+
+<ul><% @bracket.teachers.each do |nerd| %>
+		
+	<li><%= nerd.displayname %></li>
+
+<% end %></ul>
+
+<h3>current students</h3>
+
+<ul><% @bracket.students.each do |nerd| %>
+	<% if nerd.mentorships.where("bracket" == @bracket).where("is_complete" => false)[0] %>
+		
+		<li><%= nerd.displayname %></li>
+
+	<% end %>
+<% end %></ul>
+
+<h3>former students</h3>
+
+<ul><% @bracket.students.each do |nerd| %>
+	<% if nerd.mentorships.where("bracket" == @bracket).where("is_complete" => true)[0] %>
+		
+		<li><%= nerd.displayname %></li>
+
+	<% end %>
+<% end %></ul>

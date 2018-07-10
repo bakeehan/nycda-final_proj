@@ -1,10 +1,9 @@
-<h1>Achievements#index</h1>
-<p>Find me in app/views/achievements/index.html.erb</p>
+<h2>your achievements<% if cookies[:mentorship_id] %> in <i><%= @mentorship.title %><% end %></i></h2>
 
 <% @achievements.each do |nice| %>
 	<a href="/achievements/<%= nice.id %>"><%= nice.title %></a>
 	<% if current_user.id == nice.user_id %>
 		[<a href="/achievements/<%= nice.id %>/edit">edit</a>]
 	<% end %>
-	<hr>
+	<p>
 <% end %>

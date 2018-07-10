@@ -1,2 +1,21 @@
 <h1>Brackets#edit</h1>
 <p>Find me in app/views/brackets/edit.html.erb</p>
+
+<%= form_for @bracket do |f| %>
+
+	title <%= f.text_field :title %>
+
+	<hr>
+
+	<%= f.file_field :icon %>
+
+	<hr>
+
+	description<br>
+	<%= text_area(:description, :text, size: "50x10", value: @bracket.description) %>
+
+	<hr>
+
+	<%= f.submit "update" %>
+
+<% end %>

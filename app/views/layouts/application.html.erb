@@ -21,36 +21,76 @@
 
 <nav>
 
-  <div class="img-holder">
-    <%= image_tag 'header_basic.jpg', alt: '' %>
+  <div id="logo">
+    <div class="img-holder">
+      <% if cookies[:mentorship_id] && !Mentorship.find(cookies[:mentorship_id]).bracket.icon.file.nil? %>
+        <img src="<%= Mentorship.find(cookies[:mentorship_id]).bracket.icon.url %>">
+      <% else %>
+        <%= image_tag 'header_basic.jpg', alt: '' %>
+      <% end %>
+    </div>
+    <div id="headering">
+      <h1>Apprentice</h1>
+      <h2><% if cookies[:mentorship_id] %>
+        <%= Mentorship.find(cookies[:mentorship_id]).bracket.title %>
+      <% end %></h2>
+    </div>
   </div>
 
-  <% if user_signed_in? %>
-    <a href="/">home</a> --
-    <% if current_user.mentorships.where("is_complete" => false)[0] %>
-      <a href="/journeys">your journeys</a> -
-      <a href="/assignments">assignments</a> --
+  <div id="nav-top">
+    <% if user_signed_in? %>
+      <div class="nav-top-box"><a href="/"><div class="nav-btn"><div class="ugh-cent">home</div></div></a></div>
+      <% if current_user.mentorships.where("is_complete" => false)[0] %>
+        <div class="nav-top-box"><a href="/journeys"><div class="nav-btn"><div class="ugh-cent"><% if cookies[:mentorship_id] && Mentorship.find(cookies[:mentorship_id]).student == current_user %>all<% end %> your journeys</div></div></a></div>
+      <% end %>
+      <% if Mentorship.where("is_complete" => false).where("teacher_id" => current_user.id)[0] %>
+        <div class="nav-top-box"><a href="/students"><div class="nav-btn"><div class="ugh-cent"><% if cookies[:mentorship_id] && Mentorship.find(cookies[:mentorship_id]).teacher == current_user %>all<% end %> your students</div></div></a></div>
+      <% end %>
+      <% if current_user.is_admin? %>
+        <div class="nav-top-box"><a href="/admin"><div class="nav-btn"><div class="ugh-cent">admin options</div></div></a></div>
+      <% end %>
+      <a href="/user/<%= current_user.id %>"><div class="user-corner-box">
+        <% if current_user.avatar.file.nil? %>
+        <%= image_tag 'default_av.png', class: 'user-corner' %>
+        <% else %>
+          <img src="<%= current_user.avatar.url%>" class="user-corner">
+        <% end %>
+      </div></a>
+      <div class="nav-top-box"><a rel="nofollow" data-method="delete" href="/users/sign_out"><div class="nav-btn"><div class="ugh-cent">logout</div></div></a></div>
+    <% else %>
+        <div class="nav-top-box"><a href="/users/sign_in"><div class="nav-btn"><div class="ugh-cent">log in</div></div></a></div>
     <% end %>
-    <% if Mentorship.where("is_complete" => false).where("teacher_id" => current_user.id)[0] %>
-      <a href="/students">your students</a> --
+  </div>
+
+  <% if cookies[:mentorship_id] %>
+  <div id="nav-bot">
+    <a href="/journey/<%= cookies[:mentorship_id] %>" id="nav-ment"><%= Mentorship.find(cookies[:mentorship_id]).title %></a>
+      <span style="margin-right:5px;">||</span>
+    <% if Mentorship.find(cookies[:mentorship_id]).student == current_user %>
+      <a href="/brackets/<%= Mentorship.find(cookies[:mentorship_id]).bracket.id %>"><%= Mentorship.find(cookies[:mentorship_id]).bracket.title %></a>
+      |
+      <a href="/user/<%= Mentorship.find(cookies[:mentorship_id]).teacher.id %>"><%= Mentorship.find(cookies[:mentorship_id]).teacher.displayname %></a>
+      |
+      <a href="/activities">homeworks</a>
+      |
+      <a href="/achievements/new">submit</a>
+      |
+      <a href="/achievements">past submissions</a>
+    <% elsif Mentorship.find(cookies[:mentorship_id]).teacher == current_user %>
+      <a href="/user/<%= Mentorship.find(cookies[:mentorship_id]).student.id %>"><%= Mentorship.find(cookies[:mentorship_id]).student.displayname %></a>
+      |
+      <a href="/achievements">check submissions</a>
+      |
+      <a href="/journeys/<%= cookies[:mentorship_id] %>/edit">update journey</a>
     <% end %>
-    <% if current_user.is_admin? %>
-      <a href="/admin">admin options</a> --
-    <% end %>
-    <a href="/user/<%= current_user.id %>">profile</a> --
-    <%= link_to('logout', destroy_user_session_path, method: :delete) %>   
-  <% else %>
-    <%= link_to('login', new_user_session_path)  %>  
+  </div>
   <% end %>
+
 </nav>
 
-<% if cookies[:mentorship_id] %>
-  <%= cookies[:mentorship_id] %>
-<% else %>
-  fuck
-<% end %>
-
+  <div id="wrapper">
     <%= yield %>
+  </div>
 
   </body>
 </html>

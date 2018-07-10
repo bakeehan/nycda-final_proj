@@ -7,7 +7,9 @@ class ActivitiesController < ApplicationController
   	@activity = Activity.find(params[:id])
     @submit_it = Achievement.new
   	@bracket = @activity.bracket
-    @mentorship = Mentorship.find(cookies[:mentorship_id].to_i)
+    if cookies[:mentorship_id]
+      @mentorship = Mentorship.find(cookies[:mentorship_id].to_i)
+    end
   end
 
   def new

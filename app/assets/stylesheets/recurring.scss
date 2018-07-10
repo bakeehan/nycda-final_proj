@@ -1,0 +1,31 @@
+@import 'variables';
+
+.flexed {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+h1 {
+	font-family: $statement-font;
+}
+
+a {
+	text-decoration:none;
+}
+
+#wrapper h2, #wrapper h3, #wrapper h4 {
+	margin:0;
+	padidng:0;
+}
+
+#wrapper h3, #wrapper h4 {
+	margin-bottom:10px;
+}
+
+#wrapper h4 {
+	text-transform:uppercase;
+}
+
+#wrapper h5 {
+	margin: -10px 0 5px;
+}

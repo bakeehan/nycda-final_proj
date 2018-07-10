@@ -1,0 +1,36 @@
+<% if Mentorship.where("is_complete" => false).where("teacher" => current_user)[0] %>
+	
+	<h2>Your Students' Latest Submissions</h2>
+
+	<% @students.each do |entry| %>
+
+		<a href="/achievements/<%= entry.id %>"><%= entry.title %></a>, by <a href="/user/<%= entry.user_id %>"><%= entry.user.displayname %></a>, for <a href="/journey/<%= entry.mentorship_id %>"><%= entry.mentorship.title %></a><p>
+
+	<% end %>
+
+<% end %>
+
+<% if Mentorship.where("is_complete" => false).where("student" => current_user)[0] && @comments[0] %>
+
+	<h2>Latest Comments</h2>
+
+	<% @comments.each do |entry| %>
+
+		<a href="/user/<%= entry.user_id %>"><%= entry.user.displayname %></a> commented on your submission <a href="/achievements/<%=entry.achievement_id %>"><%= entry.achievement.title %></a>, <%= time_fixer(entry) %><br>
+		<%= entry.content %><p>
+
+	<% end %>
+
+<% end %>
+
+<% if Mentorship.where("is_complete" => false).where("student" => current_user)[0] %>
+
+	<h2>Activities to Complete</h2>
+
+	<% @activities.each do |entry| %>
+
+		<a href="/activities/<%= entry.id %>"><%= entry.title %></a>, for <a href="/journey/<%= Mentorship.where('bracket_id' => entry.bracket_id).where('student' => current_user).first.id %>"><%= Mentorship.where('bracket_id' => entry.bracket_id).where('student' => current_user).first.title %></a><p>
+
+	<% end %>
+
+<% end %>

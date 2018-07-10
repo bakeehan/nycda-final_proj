@@ -1,22 +1,21 @@
-<h1>Achievements#edit</h1>
-<p>Find me in app/views/achievements/edit.html.erb</p>
+<h2>Edit a Submission</h2>
 
 <%= form_for @achievement do |f| %>
 
-	<b>activity:</b> <%= @achievement.activity.title %>
+	<b>activity:</b> <%= @achievement.activity.title %> (in <%= @achievement.bracket.title %>)
 
-	<hr>
+	<p>
 
 	title <%= f.text_field :title %>
 
-	<hr>
+	<p>
 
 	<%= text_area(:content, :text, size: "50x10", value: @achievement.content) %>
 
-	<hr>
+	<br>
 
 	<%= f.submit "update" %>
 
 <% end %>
-
+<p>
 <%= link_to "delete submission", achievement_path, method: :delete %>

@@ -3,7 +3,7 @@
 
 <% @activities.each do |act| %>
 	<a href="/activities/<%= act.id %>"><%= act.title %></a>
-	<% if current_user.is_admin? %>
+	<% if current_user.is_admin? && cookies[:admin_mode] == true %>
 		[<a href="/activities/<%= act.id %>/edit">edit</a>]
 	<% end %>
 	<hr>

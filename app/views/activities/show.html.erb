@@ -1,21 +1,18 @@
-<h1>Activities#show</h1>
-<p>Find me in app/views/activities/show.html.erb</p>
-
-<%= @activity.title %>
-<br>
-<%= @bracket.title %>
+<h2><%= @activity.title %></h2>
+<h3><i>an activity in <a href="/brackets/<%= @bracket.id %>"><%= @bracket.title %></a></i></h3>
 
 <br>
 
 <%= @activity.description %>
 
-<% if @mentorship.activities.where("id" => @activity.id).length > 0 && current_user == @mentorship.student %>
+<% if @mentorship && @mentorship.activities.where("id" => @activity.id).length > 0 && current_user == @mentorship.student %>
 
 	<hr>
 
 	<%= form_for @submit_it, :url => '/achieve' do |f| %>
 
 		<h3>submit</h3>
+		<h5>for <a href="/journey/<%= @mentorship.id %>"><%= @mentorship.title %></a></h5>
 
 		title <%= f.text_field :title %>
 
@@ -52,7 +49,7 @@
 
 <% end %>
 
-<% if current_user.is_admin? %>
+<% if current_user.is_admin? && cookies[:admin_mode] == true %>
 	<hr>
 	<%= link_to "edit", edit_activity_path %>
 <% end %>

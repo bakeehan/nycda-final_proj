@@ -1,4 +1,54 @@
-<h1>Users#index</h1>
-<p>Find me in app/views/users/index.html.erb</p>
+<h2><%= @mentorship.title %></h2>
 
-<%= @mentorship.title %>
+<h3>a mentorship between 
+	<% if current_user == @mentorship.teacher %><b>you</b><% else %><a href="/user/<%= @mentorship.teacher_id %>"><%= @mentorship.teacher.displayname %></a><% end %>
+	 and 
+	<% if current_user == @mentorship.student %><b>you</b><% else %><a href="/user/<%= @mentorship.student_id %>"><%= @mentorship.student.displayname %></a><% end %>
+ in <a href="/brackets/<%= @mentorship.bracket_id %>"><%= @mentorship.bracket.title %></a></h3>
+
+ <p><%= @mentorship.bracket.description %></p>
+
+ <div class="flexed">
+
+ <div id="ment-submits">
+
+ 	<h4>unfulfilled activities</h4>
+
+	<% @mentorship.activities.each do |activity| %>
+
+		<% if check_activity(activity, @mentorship.student) == false %>
+
+			<a href="/activities/<%= activity.id %>"><%= activity.title %></a><p>
+
+		<% end %>
+
+	<% end %>
+
+ 	<h4>submissions</h4>
+
+	 <% @mentorship.student.achievements.each do |entry| %>
+
+		<% if @mentorship.bracket == entry.bracket %>
+
+	 		<a href="/achievements/<%= entry.id %>"><%= entry.title %></a> (for <a href="/activities/<%= entry.activity_id %>"><%= entry.activity.title %></a>)<p>
+
+	 	<% end %>
+
+	 <% end %>
+	
+</div>
+
+<div id="ment-act">
+	<h4>history</h4>
+
+	<% @feed.each do |entry| %>
+
+		<% if entry.is_a?Comment %>
+			<a href="/user/<%= entry.user_id %>"><%= entry.user.displayname %></a> commented on <a href="/achievements/<%=entry.achievement_id %>"><%= entry.achievement.title %></a>, <%= time_fixer(entry) %><p>
+		<% elsif entry.is_a?Achievement %>
+			<a href="/user/<%= entry.user_id %>"><%= entry.user.displayname %></a> <% if entry.updated_at == entry.created_at %>posted <% else %>edited <% end %> <a href="/achievements/<%= entry.id %>"><%= entry.title %></a>, <%= time_fixer(entry) %><p>
+		<% end %>
+
+	<% end %>
+
+</div>

@@ -3,21 +3,169 @@
 body {
 	font-family: $body-font;
 	font-size:14px;
-	background-color: $lightest;
+	background-color: #F4F4F4;
+	padding:0;
+	margin:0;
+}
+
+#wrapper {
+	width: 95%;
+	margin: 10px auto 30px;
 }
 
 nav .img-holder {
 	border-radius: 100%;
 	overflow: hidden;
-	width:75px;
-	height:75px;
+	width:110px;
+	height:110px;
 	padding:0;
+	background-color:black;
 }
 
 nav .img-holder img {
-	width:100%;
+	min-width:100%;
+	height:110px;
 }
 
+nav #logo {
+	position:relative;
+	margin:10px;
+}
+
+#headering {
+	position: absolute;
+	top:7px;
+	left:5px;
+    transform: rotate(-13deg);
+    width:320px;
+}
+
+#headering h1 {
+	margin:0;
+    font-size:2.05em;
+    border-bottom:2px solid black;
+    padding-bottom:2px;
+    line-height:100%;
+    width:150px;
+    text-shadow: 0 -1px 12px $loglo, 0 0px 6px $loglo;
+}
+
+#headering h2 {
+	margin:0;
+    text-transform:uppercase;
+    font-size:1.35em;
+    padding-left:35px;
+    text-shadow: 0 2px 5px $loglo, 0 -3px 10px $loglo;
+}
+
+#nav-top, #nav-bot {
+	position: absolute;
+    text-align:right;
+	padding:0;
+	display:flex;
+}
+
+#nav-top {
+	/* background-color:red; */
+    height: 40px; 
+	top:22px;
+	left:340px;
+	width:calc(100% - 355px);
+	justify-content: flex-end;
+}
+
+#nav-bot {
+	background-color:$feature-two;
+    height: 26px; 
+	top: 86px;
+	left: 160px;
+	width:calc(100% - 160px);
+	padding-top:6px;
+	color: #aaa;
+}
+
+.nav-btn {
+	background-color: $feature;
+	padding: 5px;
+	text-align:center;
+	line-height: 100%;
+	position: relative;
+}
+
+#nav-top .nav-btn {
+	height:30px;
+	width:65px;
+}
+
+#nav-bot .nav-btn {
+	height:20px;
+	width:auto;
+}
+
+#nav-bot #nav-ment {
+	margin: -13px 15px 0 10px;
+	font-style:italic;
+	transition: color 2s;
+}
+
+#nav-bot #nav-ment:hover {
+	color: $nav-hover;
+}
+
+#nav-bot #nav-ment::first-letter {
+	font-family: $statement-font;
+	font-size:1.3em;
+}
+
+.ugh-cent {
+	width:calc(100% - 10px);
+	position: absolute;
+	top: 50%;
+	transform: translate(0, -50%);
+	text-align:center;
+}
+
+.user-corner {
+	border-radius:100%;
+	height:55px;
+}
+
+.user-corner-box, .nav-top-box {
+    transition: background-color $nav-time;
+}
+
+.nav-top-box {
+	border: 2px solid $feature;
+	padding: 2px;
+	margin: 0 15px 0 0;
+	height: 40px;
+}
+
+.user-corner-box {
+	border: 2.5px solid $feature;
+	padding: 3.5px;
+	margin: -12px 10px 0 0;
+	border-radius:100%;
+	height:55px;
+}
+
+.user-corner-box:hover, .nav-top-box:hover {
+	background-color:$nav-hover;
+}
+
+#nav-bot a {
+	display: inline-block;
+	margin:0 10px;
+}
+
+nav a {
+	color:$nav;
+    transition: color $nav-time;
+}
+
+nav a:hover {
+    color: $nav-hover;
+}
 
 /* GREYS GRADIENT */
 

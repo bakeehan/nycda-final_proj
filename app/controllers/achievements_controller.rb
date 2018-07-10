@@ -1,30 +1,37 @@
 class AchievementsController < ApplicationController
   def index
-  	mentorship = Mentorship.find(cookies[:mentorship_id].to_i)
-  	if mentorship.student == current_user || mentorship.teacher == current_user
-  		# @achievements = Achievement.all
-  		@achievements = mentorship.achievements
-  	else
-  	  redirect_to "/"
-  	end
+    @achievements = current_user.achievements
+    if cookies[:mentorship_id]
+      @mentorship = Mentorship.find(cookies[:mentorship_id])
+      @achievements = current_user.achievements.where("mentorship" => @mentorship)
+    end
   end
 
   def show
-  	mentorship = Mentorship.find(cookies[:mentorship_id].to_i)
-  	@achievement = Achievement.find(params[:id])
-    if @achievement.mentorship != mentorship
+    @achievement = Achievement.find(params[:id])
+    if !current_user.brackets.include?(@achievement.bracket)
       redirect_to "/achievements"
+    end
+  	if cookies[:mentorship_id]
+      mentorship = Mentorship.find(cookies[:mentorship_id].to_i)
+      if @achievement.mentorship != mentorship
+        redirect_to "/achievements"
+      end
     end
     @new_comment = Comment.new
   end
 
   def new
-  	mentorship = Mentorship.find(cookies[:mentorship_id].to_i)
-  	if mentorship.student == current_user
-	    @achievement = Achievement.new
-  	else
-  		redirect_to "/"
-  	end
+    if cookies[:mentorship_id]
+  	   mentorship = Mentorship.find(cookies[:mentorship_id].to_i)
+    	if mentorship.student == current_user
+  	    @achievement = Achievement.new
+    	else
+    		redirect_to "/"
+    	end
+    else
+      redirect_to "/"
+    end
   end
 
   def create
@@ -41,15 +48,10 @@ class AchievementsController < ApplicationController
   end
 
   def edit
-  mentorship = Mentorship.find(cookies[:mentorship_id].to_i)
-  if mentorship.student == current_user
-	    @achievement = Achievement.find(params[:id])
-      if @achievement.mentorship != mentorship
-        redirect_to "/achievements"
-      end
-	else
-		redirect_to "/achievements"
-	end
+    @achievement = Achievement.find(params[:id])
+    if current_user != @achievement.user
+  		redirect_to "/achievements"
+  	end
   end
 
   def update

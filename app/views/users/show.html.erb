@@ -1,8 +1,35 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
-
-<% if user_signed_in? %>
 <h2><%= @user.displayname %></h2>
-<img src="<%= @user.avatar.url %>">
-<%= link_to "edit", edit_user_registration_path %>
+
+<% if @user.avatar.file.nil? %>
+    <%= image_tag 'default_av.png', class: 'user-av' %>
+<% else %>
+	<img src="<%= @user.avatar.url %>" class="user-av">
+<% end %>
+
+<br>
+
+<% if @user.is_admin? %>
+	<i>administrator</i><p>
+<% end %>
+
+<% if @user.mentorships.where("is_complete" => false)[0] %>
+	studying
+	<ul>
+	<% @user.mentorships.each do |m| %>
+		<li><%= m.bracket.title %></li>
+	<% end %>
+	</ul>
+<% end %>
+
+<% if Mentorship.where("teacher" => @user)[0] %>
+	teaches
+	<ul>
+	<% Mentorship.where("teacher" => @user).each do |m| %>
+		<li><%= m.bracket.title %></li>
+	<% end %>
+	</ul>
+<% end %>
+
+<% if current_user == @user %>
+	<%= link_to "edit", edit_user_registration_path %>
 <% end %>
