@@ -1,2 +1,7 @@
 <h2>your students</h2>
 
+<% @classes.each do |nerdery| %>
+
+	<a href="/user/<%= nerdery.student_id %>"><%= nerdery.student.displayname %></a> — in <a href="/journey/<%= nerdery.id %>"><%= nerdery.title %></a><p>
+
+<% end %>

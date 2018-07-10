@@ -2,13 +2,17 @@
 
 <p>
 
+	<% if cookies[:failure] %>
+	<%= cookies[:failure] %>
+	<% end %>
+
 <%= form_for @journey, :url => '/add_journey' do |f| %>
 
 	<%= select_tag(:student_id, options_from_collection_for_select(User.all, :id, :displayname), include_blank: "student") %>
 
 	...is learning...
 
-	<%= select_tag(:student_id, options_from_collection_for_select(Bracket.all, :id, :title), include_blank: "bracket") %>
+	<%= select_tag(:bracket_id, options_from_collection_for_select(Bracket.all, :id, :title), include_blank: "bracket") %>
 
 	...from...
 

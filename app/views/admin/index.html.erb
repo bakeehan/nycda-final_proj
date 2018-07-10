@@ -1,6 +1,5 @@
-<h1>Admin#index</h1>
-<p>Find me in app/views/admin/index.html.erb</p>
+<h2>all mentorships</h2>
 
-<% if cookies[:admin_mode] %>
-	<%= cookies[:admin_mode] %>
+<% @all.each do |entry| %>
+	<a href="/journey/<%= entry.id %>"><%= entry.title %></a><p>
 <% end %>

@@ -49,7 +49,8 @@
       <% if user_signed_in? && current_user.is_admin? && cookies[:admin_mode] == "true" %>
         <div class="nav-top-box"><a href="/end_admin"><div class="nav-btn"><div class="ugh-cent">turn off admin</div></div></a></div>
       <% elsif user_signed_in? && current_user.is_admin? %>
-        <div class="nav-top-box"><a href="/admin"><div class="nav-btn"><div class="ugh-cent">admin options</div></div></a></div>
+        <div class="nav-top-box"><a href="/journeys/new"><div class="nav-btn"><div class="ugh-cent">admin options</div></div></a></div>
+        <!-- <div class="nav-top-box"><a href="/admin"><div class="nav-btn"><div class="ugh-cent">admin options</div></div></a></div> -->
       <% end %>
       <a href="/user/<%= current_user.id %>"><div class="user-corner-box">
         <% if current_user.avatar.file.nil? %>
@@ -60,6 +61,7 @@
       </div></a>
       <div class="nav-top-box"><a rel="nofollow" data-method="delete" href="/users/sign_out"><div class="nav-btn"><div class="ugh-cent">logout</div></div></a></div>
     <% else %>
+        <div class="nav-top-box"><a href="/users/sign_up"><div class="nav-btn"><div class="ugh-cent">sign up</div></div></a></div>
         <div class="nav-top-box"><a href="/users/sign_in"><div class="nav-btn"><div class="ugh-cent">log in</div></div></a></div>
     <% end %>
   </div>
@@ -94,7 +96,8 @@
       <a href="/journeys/<%= cookies[:mentorship_id] %>/edit">update journey</a>
     <% end %>
     <% else %>
-      WHAT TO PUT HERE??
+      <b>learn to do it!</b>
+      <!-- WHAT TO PUT HERE?? -->
     <% end %>
   </div>
 

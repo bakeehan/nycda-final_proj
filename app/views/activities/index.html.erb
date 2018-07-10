@@ -6,7 +6,9 @@
 		<% if current_user.is_admin? && cookies[:admin_mode] == true %>
 			[<a href="/activities/<%= act.id %>/edit">edit</a>]
 		<% end %>
+		<% if act.description %>
 		<p><%= preview_mode(act.description, 30) %>
+		<% end %>
 		<% if check_activity(act, current_user) == true %>
 			<div class="act-note"><i class="fas fa-check"></i> submitted as <a href="/achievements/<%= act.achievements.where("user" => current_user).last.id %>"><%= act.achievements.where("user" => current_user).last.title %></a></div>
 		<%end%>
