@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   get 'journeys' => "student#index"
   get 'journey/:id' => "users#mentorship"
 
+  get 'journeys/new' => "admin#mentorship"
+  get '/end_admin' => "admin#switch"
+
   resources :brackets
 
   resources :activities
@@ -24,6 +27,7 @@ Rails.application.routes.draw do
   get 'assignments' => "student#index"
   get 'comments' => "student#feedback"
 
+  post '/add_journey' => "admin#create"
   post '/comment' => "comments#create"
   post '/achieve' => "achievements#create"
 

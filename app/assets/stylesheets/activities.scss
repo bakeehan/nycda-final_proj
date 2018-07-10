@@ -1,3 +1,21 @@
 // Place all the styles related to the activities controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import 'variables';
+
+.act-note {
+	margin-top: -5px;
+	font-size:1.1em;
+	font-variant: small-caps;
+	font-weight: 900;
+}
+
+.act-entry {
+	margin: 15px 0;
+}
+
+.act-entry b {
+	font-size: .75em;
+	margin-left:5px;
+}

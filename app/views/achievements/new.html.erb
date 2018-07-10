@@ -1,23 +1,26 @@
 <h2>Submit an Activity</h2>
+<h3>to <i><%= @mentorship.title %></i></h3>
+
+<p>
 
 <%= form_for @achievement do |f| %>
 
 	<%= select_tag(:activity_id, options_from_collection_for_select(Mentorship.find(cookies[:mentorship_id].to_i).activities, :id, :title), include_blank: "What activity are you completing?") %>
 
-	<hr>
+	<p>
+
+	submission title <%= f.text_field :title %>
+
+	<p>
+
+	<%= text_area(:content, :text, size: "50x10") %>
+
+	<br>
 
 	is this a private submission?
 	<%= select_tag(:is_private, options_for_select([['No', false], ['Yes', true]]))%>
 
-	<hr>
-
-	title <%= f.text_field :title %>
-
-	<hr>
-
-	<%= text_area(:content, :text, size: "50x10") %>
-
-	<hr>
+	<p>
 
 	<%= f.submit "create" %>
 

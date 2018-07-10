@@ -15,7 +15,7 @@
 	, taught by <a href="/user/<%= journey.teacher_id %>"><%= journey.teacher.displayname %></a>
 
 	<P>
-		<%= journey.bracket.description %>
+		<%= preview_mode(journey.bracket.description, 100) %>
 	</P>
 
 	<% if !journey.is_complete? %>
@@ -24,7 +24,7 @@
 
 		<% journey.activities.each do |activity| %>
 			<a href="/activities/<%= activity.id %>"><%= activity.title %></a>
-				<% if activity.achievements.where("user_id" => journey.student_id)[0] %>
+				<% if check_activity(activity, current_user) == true %>
 					<i class="fas fa-check"></i>
 				<%end%>
 			<br>

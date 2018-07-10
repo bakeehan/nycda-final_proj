@@ -6,13 +6,16 @@
 
 <% else %>
 
-	<h3>fulfilling <a href="/activities/<%= @achievement.activity_id %>"><%= @achievement.activity.title %></a> for <a href="/journey/<%= @achievement.mentorship_id %>"><%= @achievement.mentorship.title %></a></h3>
+	<h3>by <a href="/user/<%= @achievement.user_id %>"><%= @achievement.user.displayname %></a>, fulfilling <a href="/activities/<%= @achievement.activity_id %>"><%= @achievement.activity.title %></a> for <a href="/journey/<%= @achievement.mentorship_id %>"><%= @achievement.mentorship.title %></a></h3>
 
 	<p><%= @achievement.content %></p>
 
 	<% if @achievement.user == current_user %>
 
-		<div><a href="/achievements/<%= @achievement.id %>/edit">edit</a></div>
+		<button><a href="/achievements/<%= @achievement.id %>/edit">edit</a></button>
+
+
+		<button><%= link_to "delete", achievement_path, method: :delete %></button>
 
 	<% end %>
 
@@ -20,8 +23,11 @@
 
 	<% if @achievement.comments %>
 		<% @achievement.comments.each do |comment| %>
-			<%= comment.user.displayname %> said: 
-			<%= comment.content %><br>
+			<div class="flexed ach-comments">
+				<div class="comm-name"><h4><%= comment.user.displayname %> said: </h4></div>
+				<div class="comm-time"><%= time_fixer(comment) %></div>
+			<div class="ach-comm"><%= comment.content %></div>
+			</div>
 		<% end %>
 	<% end %>
 

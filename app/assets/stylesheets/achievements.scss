@@ -1,3 +1,21 @@
 // Place all the styles related to the achievements controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.comm-name {
+	width: 70%;
+}
+
+.comm-time {
+	text-align:right;
+	width: 30%;
+	font-size: .8em;
+}
+
+.ach-comments {
+	width: 450px;
+}
+
+.ach-comm {
+	width: 100%;
+}

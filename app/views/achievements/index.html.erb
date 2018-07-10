@@ -1,9 +1,11 @@
 <h2>your submissions<% if cookies[:mentorship_id] %> in <i><%= @mentorship.title %><% end %></i></h2>
 
 <% @achievements.each do |nice| %>
-	<a href="/achievements/<%= nice.id %>"><%= nice.title %></a>
-	<% if current_user.id == nice.user_id %>
-		( <a href="/achievements/<%= nice.id %>/edit">edit</a> )
-	<% end %>
-	<p><%= preview_mode(nice.content) %></p>
+	<div class="act-entry">
+		<h3><a href="/achievements/<%= nice.id %>"><%= nice.title %></a>
+		<% if current_user.id == nice.user_id %>
+			<b>( <a href="/achievements/<%= nice.id %>/edit">edit</a> )</b>
+		<% end %></h3>
+		<p><%= preview_mode(nice.content, 30) %></p>
+	</div>
 <% end %>

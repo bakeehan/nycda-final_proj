@@ -1,6 +1,10 @@
 class ActivitiesController < ApplicationController
   def index
-  	@activities = Activity.all
+    @activities = Activity.all
+    if cookies[:mentorship_id]
+      @mentorship = Mentorship.find(cookies[:mentorship_id])
+      @activities = @mentorship.activities
+    end
   end
 
   def show
@@ -45,6 +49,11 @@ class ActivitiesController < ApplicationController
     else
       render "/activities/#{:id}"
     end
+  end
+
+  def destroy
+    Activity.find(params[:id]).destroy
+    redirect_to "/activities"
   end
 
   private

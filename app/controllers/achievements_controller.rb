@@ -8,6 +8,8 @@ class AchievementsController < ApplicationController
   end
 
   def show
+      require 'date'
+      now = DateTime.now
     @achievement = Achievement.find(params[:id])
     if !current_user.brackets.include?(@achievement.bracket)
       redirect_to "/achievements"
@@ -23,8 +25,8 @@ class AchievementsController < ApplicationController
 
   def new
     if cookies[:mentorship_id]
-  	   mentorship = Mentorship.find(cookies[:mentorship_id].to_i)
-    	if mentorship.student == current_user
+  	   @mentorship = Mentorship.find(cookies[:mentorship_id].to_i)
+    	if @mentorship.student == current_user
   	    @achievement = Achievement.new
     	else
     		redirect_to "/"

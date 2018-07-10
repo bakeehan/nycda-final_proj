@@ -48,6 +48,11 @@ class BracketsController < ApplicationController
     else
       render "/brackets/#{:id}"
     end
+
+  def destroy
+    Bracket.find(params[:id]).destroy
+    redirect_to "/brackets"
+  end
   end
 
   private

@@ -4,7 +4,6 @@ class UsersController < ApplicationController
     require 'date'
     @now = DateTime.now
     cookies.delete :mentorship_id
-    cookies.delete :admin_mode
     if !user_signed_in?
       redirect_to "/users/sign_in"
     else
