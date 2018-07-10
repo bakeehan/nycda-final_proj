@@ -25,6 +25,12 @@ class BracketsController < ApplicationController
 
   def show
     @bracket = Bracket.find(params[:id])
+    @staff = []
+    @bracket.teachers.each do |nerd|
+      if !@staff.include?(nerd)
+        @staff.push (nerd)
+      end
+    end
   end
 
   def edit

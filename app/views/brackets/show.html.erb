@@ -1,33 +1,41 @@
 <h2><%= @bracket.title %></h2>
 
-<p><%= @bracket.description %></p>
+<div class="flexed">
 
-<div class="bracket-av"><img src="<%= @bracket.icon.url %>"></div>
+	<div class="bracket-d"><%= @bracket.description %></div>
 
-<h3>teachers</h3>
+	<div class="bracket-2">
 
-<ul><% @bracket.teachers.each do |nerd| %>
-		
-	<li><%= nerd.displayname %></li>
+		<div class="bracket-av"><img src="<%= @bracket.icon.url %>"></div>
 
-<% end %></ul>
 
-<h3>current students</h3>
+		<div class="flexed">
 
-<ul><% @bracket.students.each do |nerd| %>
-	<% if nerd.mentorships.where("bracket" == @bracket).where("is_complete" => false)[0] %>
-		
-		<li><%= nerd.displayname %></li>
+			<div class="halffa">
 
-	<% end %>
-<% end %></ul>
+				<h3>teachers</h3>
 
-<h3>former students</h3>
+				<% @staff.each do |nerd| %>
+						
+					<%= nerd.displayname %><p>
 
-<ul><% @bracket.students.each do |nerd| %>
-	<% if nerd.mentorships.where("bracket" == @bracket).where("is_complete" => true)[0] %>
-		
-		<li><%= nerd.displayname %></li>
+				<% end %>
+			</div>
 
-	<% end %>
-<% end %></ul>
+			<div class="halffa">
+				<h3>current students</h3>
+
+				<% @bracket.students.each do |nerd| %>
+					<% if nerd.mentorships.where("bracket" == @bracket).where("is_complete" => false)[0] %>
+						
+						<%= nerd.displayname %><p>
+
+					<% end %>
+				<% end %>
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
