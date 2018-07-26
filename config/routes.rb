@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   get 'users/feed' => "users#home"
 
+  # root "brackets#index"
   root "users#home"
   
   get 'user/:id' => "users#show"

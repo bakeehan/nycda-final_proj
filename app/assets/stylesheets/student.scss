@@ -1,3 +1,89 @@
 // Place all the styles related to the student controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import 'variables';
+
+.journey-ent {
+	margin: 10px 0 70px;
+	justify-content: space-between;
+}
+
+.journey-ent h3 {
+	display:block;
+	width: 100%;
+	font-size: 1.6em;
+	line-height:30px;
+}
+
+.journey-ent h3::first-letter {
+	font-family: $statement-font;
+	font-weight: lighter;
+	font-size: 1.2em;
+	margin-right: 3px;
+}
+
+.journey-entry {
+	width: calc(100% - 500px);
+}
+
+.journey-entry b {
+	font-size: 1.1em;
+	font-variant: small-caps;
+}
+
+.journey-entry b a {
+	text-transform:uppercase;
+}
+
+.journey-entry p {
+	text-align:justify;
+}
+
+.journey-prog {
+	width: 200px;
+	margin-top: -15px;
+}
+
+.journey-side {
+	width: 225px;
+}
+
+.journey-side {
+	position: relative;
+}
+
+.journey-b-img, .journey-t-img {
+	border-radius:100%;
+	overflow: hidden;
+	position: absolute;
+	border: 5px solid rgba(255, 255, 255, 0.5);
+}
+
+.journey-b-img img, .journey-t-img img {
+	min-width:100%;
+}
+
+.journey-b-img {
+	width:200px;
+	height: 200px;
+	top: 10px;
+	left: 0;
+	z-index: 3;
+}
+
+.journey-t-img {
+	width:100px;
+	height: 100px;
+	top: 20px;
+	left: 0;
+	z-index: 5;
+}
+
+.journey-b-img img {
+	height: 200px;
+}
+
+.journey-t-img img {
+	height: 100px;
+}

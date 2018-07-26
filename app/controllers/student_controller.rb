@@ -1,6 +1,7 @@
 class StudentController < ApplicationController
 
   def index
+    require 'date'
     cookies.delete :admin_mode
   	cookies.delete :mentorship_id
   	if user_signed_in? && current_user.mentorships[0]

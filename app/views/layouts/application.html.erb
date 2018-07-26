@@ -23,7 +23,9 @@
 
   <div id="logo">
     <div class="img-holder">
-      <% if cookies[:mentorship_id] && !Mentorship.find(cookies[:mentorship_id]).bracket.icon.file.nil? %>
+      <% if cookies[:mentorship_id] && cookies[:mentorship_id] == "admin" %>
+        <%= image_tag 'admin.jpg' %>
+      <% elsif cookies[:mentorship_id] && cookies[:mentorship_id] != "admin" && !Mentorship.find(cookies[:mentorship_id]).bracket.icon.file.nil? %>
         <img src="<%= Mentorship.find(cookies[:mentorship_id]).bracket.icon.url %>">
       <% else %>
         <%= image_tag 'header_basic.jpg', alt: '' %>
@@ -31,7 +33,9 @@
     </div>
     <div id="headering">
       <h1>Apprentice</h1>
-      <h2><% if cookies[:mentorship_id] %>
+      <h2><% if cookies[:mentorship_id] && cookies[:mentorship_id] == "admin" %>
+        admin options
+        <% elsif cookies[:mentorship_id] %>
         <%= Mentorship.find(cookies[:mentorship_id]).bracket.title %>
       <% end %></h2>
     </div>
@@ -40,15 +44,14 @@
   <div id="nav-top">
     <% if user_signed_in? %>
       <div class="nav-top-box"><a href="/"><div class="nav-btn"><div class="ugh-cent">home</div></div></a></div>
+      <div class="nav-top-box"><a href="/brackets"><div class="nav-btn"><div class="ugh-cent">subjects</div></div></a></div>
       <% if current_user.mentorships.where("is_complete" => false)[0] %>
-        <div class="nav-top-box"><a href="/journeys"><div class="nav-btn"><div class="ugh-cent"><% if cookies[:mentorship_id] && Mentorship.find(cookies[:mentorship_id]).student == current_user %>all<% end %> your journeys</div></div></a></div>
+        <div class="nav-top-box"><a href="/journeys"><div class="nav-btn"><div class="ugh-cent">your journeys</div></div></a></div>
       <% end %>
       <% if Mentorship.where("is_complete" => false).where("teacher_id" => current_user.id)[0] %>
-        <div class="nav-top-box"><a href="/students"><div class="nav-btn"><div class="ugh-cent"><% if cookies[:mentorship_id] && Mentorship.find(cookies[:mentorship_id]).teacher == current_user %>all<% end %> your students</div></div></a></div>
+        <div class="nav-top-box"><a href="/students"><div class="nav-btn"><div class="ugh-cent"> your students</div></div></a></div>
       <% end %>
-      <% if user_signed_in? && current_user.is_admin? && cookies[:admin_mode] == "true" %>
-        <div class="nav-top-box"><a href="/end_admin"><div class="nav-btn"><div class="ugh-cent">turn off admin</div></div></a></div>
-      <% elsif user_signed_in? && current_user.is_admin? %>
+      <% if user_signed_in? && current_user.is_admin? %>
         <div class="nav-top-box"><a href="/journeys/new"><div class="nav-btn"><div class="ugh-cent">admin options</div></div></a></div>
         <!-- <div class="nav-top-box"><a href="/admin"><div class="nav-btn"><div class="ugh-cent">admin options</div></div></a></div> -->
       <% end %>
@@ -68,7 +71,7 @@
 
   
   <div id="nav-bot">
-    <% if user_signed_in? && current_user.is_admin? && cookies[:admin_mode] == "true" %>
+    <% if user_signed_in? && current_user.is_admin? && cookies[:mentorship_id] && cookies[:mentorship_id] == "admin" %>
       <b>admin menu</b>
       <a href="/brackets/new">new bracket</a>
       | 

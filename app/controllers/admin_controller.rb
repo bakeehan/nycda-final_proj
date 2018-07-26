@@ -1,13 +1,13 @@
 class AdminController < ApplicationController
   def index
-    cookies.delete :mentorship_id
-  	cookies[:admin_mode] = "true"
+   #  cookies.delete :mentorship_id
+  	# cookies[:admin_mode] = "true"
+    cookies[:mentorship_id] = "admin"
     @all = Mentorship.all
   end
 
   def mentorship
-    cookies.delete :mentorship_id
-  	cookies[:admin_mode] = "true"
+  	cookies[:mentorship_id] = "admin"
   	@journey = Mentorship.new
   end
 

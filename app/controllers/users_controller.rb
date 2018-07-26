@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
 
   def home
+    if !current_user.mentorships[0]
+      redirect_to "/brackets"
+    end
     require 'date'
     @now = DateTime.now
     cookies.delete :mentorship_id

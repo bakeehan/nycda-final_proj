@@ -2,6 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@import 'variables';
+
 .bracket-av img {
 	max-width: 100%;
 	min-height: 150px;
@@ -18,4 +20,55 @@
 	width: calc(100% - (400px + 25px));
 	margin-right: 25px;
 	text-align: justify;
+}
+
+.brackets-all {
+	justify-content: space-between;
+	padding: 10px;
+}
+
+.bracket-list {
+	width: 325px;
+	height: 250px;
+	position: relative;
+	overflow:hidden;
+	margin-bottom: 20px;
+}
+
+.bracket-backer {
+	position:absolute;
+	top:0;
+	left:0;
+	z-index:-1;
+	height: 250px;
+	min-width:100%;
+}
+
+.bracket-list h3 {
+	text-align:center;
+	text-transform: uppercase;
+	color:white;
+	font-size:1.3em;
+    text-shadow: 0 -1px 12px black, 0 0px 7px black;
+}
+
+.bracket-list h3::first-letter {
+	font-family: $statement-font;
+	margin-right: 2px;
+}
+
+.bracket-abt {
+	background-color: rgba(255, 255, 255, 0.5);
+	width: 87%;
+	margin: -10px auto 0;
+	height: 185px;
+	overflow:hidden;
+	color: black;
+	padding: 5px;
+	font-size: .95em;
+	font-weight:bold;
+}
+
+.bracket-abt a {
+
 }

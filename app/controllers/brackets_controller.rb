@@ -1,6 +1,7 @@
 class BracketsController < ApplicationController
 
   def index
+    cookies.delete :mentorship_id
   	@brackets = Bracket.all
   end
 

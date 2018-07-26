@@ -1,8 +1,22 @@
-<h2>all brackets</h2>
+<h2></h2>
 
+<div class="flexed brackets-all">
 <% @brackets.each do |b| %>
-	<a href="/brackets/<%= b.id %>"><%= b.title %></a><br>
-	<%if !b.icon.file.nil? %>
-		<!-- <img src="<%= b.icon.url %>"> -->
-	<% end %>
+	<div class="bracket-list">
+		
+		<%if !b.icon.file.nil? %>
+			<img src="<%= b.icon.url %>" class="bracket-backer">
+	    <% else %>
+	        <%= image_tag 'header_basic.jpg', alt: '', class: 'bracket-backer' %>
+		<% end %>
+
+	<a href="/brackets/<%= b.id %>"><h3><%= b.title %></h3></a>
+
+	<div class="bracket-abt">
+		<%= preview_mode(b.description, 50) %>
+		<a href="/brackets/<%= b.id %>">learn more</a>
+	</div>
+
+	</div>
 <% end %>
+</div>
