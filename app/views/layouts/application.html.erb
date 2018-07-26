@@ -73,30 +73,31 @@
   <div id="nav-bot">
     <% if user_signed_in? && current_user.is_admin? && cookies[:mentorship_id] && cookies[:mentorship_id] == "admin" %>
       <b>admin menu</b>
-      <a href="/brackets/new">new bracket</a>
+      <a href="/brackets/new">new subject</a>
       | 
-      <!-- <a href="/activities/new">new activity</a> -->
+      <a href="/activities/new">new activity</a>
+      |
       <a href="/journeys/new">assign a mentorship</a>
     <% elsif cookies[:mentorship_id] %>
     <b>journey: </b>
     <a href="/journey/<%= cookies[:mentorship_id] %>" id="nav-ment"><%= Mentorship.find(cookies[:mentorship_id]).title %></a>
       <span style="margin-right:5px;">||</span>
     <% if Mentorship.find(cookies[:mentorship_id]).student == current_user %>
-      <a href="/brackets/<%= Mentorship.find(cookies[:mentorship_id]).bracket.id %>"><%= Mentorship.find(cookies[:mentorship_id]).bracket.title %></a>
+      <a class ="bot-button" href="/brackets/<%= Mentorship.find(cookies[:mentorship_id]).bracket.id %>"><%= Mentorship.find(cookies[:mentorship_id]).bracket.title %></a>
       |
-      <a href="/user/<%= Mentorship.find(cookies[:mentorship_id]).teacher.id %>"><%= Mentorship.find(cookies[:mentorship_id]).teacher.displayname %></a>
+      <a class ="bot-button" href="/user/<%= Mentorship.find(cookies[:mentorship_id]).teacher.id %>"><%= Mentorship.find(cookies[:mentorship_id]).teacher.displayname %></a>
       |
-      <a href="/activities">homeworks</a>
+      <a class ="bot-button" href="/activities">homeworks</a>
       |
-      <a href="/achievements/new">submit</a>
+      <a class ="bot-button" href="/achievements/new">submit</a>
       |
-      <a href="/achievements">past submissions</a>
+      <a class ="bot-button" href="/achievements">past submissions</a>
     <% elsif Mentorship.find(cookies[:mentorship_id]).teacher == current_user %>
-      <a href="/user/<%= Mentorship.find(cookies[:mentorship_id]).student.id %>"><%= Mentorship.find(cookies[:mentorship_id]).student.displayname %></a>
+      <a class ="bot-button" href="/user/<%= Mentorship.find(cookies[:mentorship_id]).student.id %>"><%= Mentorship.find(cookies[:mentorship_id]).student.displayname %></a>
       |
-      <a href="/achievements">check submissions</a>
-      |
-      <a href="/journeys/<%= cookies[:mentorship_id] %>/edit">update journey</a>
+      <a class ="bot-button" href="/achievements">check submissions</a>
+      <!-- | -->
+      <!-- <a class ="bot-button" href="/journeys/<%= cookies[:mentorship_id] %>/edit">update journey</a> -->
     <% end %>
     <% else %>
       <b>learn to do it!</b>

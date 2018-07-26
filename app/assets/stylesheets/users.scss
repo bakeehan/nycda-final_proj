@@ -3,7 +3,18 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .user-av {
-	/* border-radius: 100%; */
+	border-radius: 100%;
 	height:200px;
 	width:200px;
+	float: left;
+	margin-right: 40px;
+}
+
+#userwrapper {
+	width: 700px;
+	margin: 0 auto;
+}
+
+.user-listed {
+	width: 45%;
 }

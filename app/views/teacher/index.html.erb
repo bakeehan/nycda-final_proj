@@ -1,7 +1,78 @@
-<h2>your students</h2>
+<% @classes.each do |journey| %>
 
-<% @classes.each do |nerdery| %>
+	<div class="journey-ent flexed">	
 
-	<a href="/user/<%= nerdery.student_id %>"><%= nerdery.student.displayname %></a> — in <a href="/journey/<%= nerdery.id %>"><%= nerdery.title %></a><p>
+		<h3>
+			<a href="/user/<%= journey.student.id %>"><%= journey.student.displayname %></a>
+			—
+			<i> <a href="/journey/<%= journey.id %>"><%= journey.title %></a></i>
+		</h3>
+		
+		<div class="journey-side">
+			<div class="journey-b-img">
+				<%if !journey.bracket.icon.file.nil? %>
+					<img src="<%= journey.bracket.icon.url %>">
+			    <% else %>
+			        <%= image_tag 'header_basic.jpg', alt: '' %>
+				<% end %>
+			</div>
+			<div class="journey-s-img">
+				<% if journey.student.avatar.file.nil? %>
+		        	<%= image_tag 'default_av.png' %>
+		        <% else %>
+		         	 <img src="<%= journey.student.avatar.url%>">
+		        <% end %>
+		    </div>
+		</div>
+
+		<div class="journey-entry">
+			<b><a href="/brackets/<%= journey.bracket_id %>"><%= journey.bracket.title %></a>
+
+			<% if !journey.is_complete? %>
+				( <i><%= journey.bracket.level_system[journey.level] %></i> )
+			<% end %>
+
+			<% if !journey.is_complete? %> &nbsp; since <%= journey.created_at.strftime("%B %e, %Y") %> <% end %></b>
+
+			<P>
+				<%= journey.bracket.description %>
+
+			</P>
+		</div>
+		<div class="journey-prog">
+
+			<% if !journey.is_complete? %>
+
+			<% if make_recents(journey.achievements)[0] %>
+				<h4>recent activity</h4>
+					<% make_recents(journey.achievements).each do |entry| %>
+						<b class="b-date"><%= time_fixer(entry) %>:</b>
+						<%= journey.student.displayname %>
+						<% if entry.updated_at != entry.created_at %>
+							edited
+						<% else %>
+							posted
+						<% end %>
+						<a href="/achievements/<%= entry.id %>"><%= entry.title %></a> (submission for <a href="/activities/<%= entry.activity_id %>"><%= entry.activity.title %></a>) <p>
+					<% end %>
+				<% end %>
+				<hr>
+					<p>
+				<h4>incomplete</h4>
+				<% journey.activities.each do |activity| %>
+						<% if check_activity(activity, journey.student) == false %>
+							<a href="/activities/<%= activity.id %>"><%= activity.title %></a><br>
+						<%end%>
+				<% end %>
+
+			<% else %>
+			
+			<h4>completed!</h4>
+				<%= journey.created_at.strftime("%B %e, %Y") %> — <%= journey.end_date.strftime("%B %e, %Y") %>
+
+			<% end %>
+		</div>
+
+	</div>
 
 <% end %>

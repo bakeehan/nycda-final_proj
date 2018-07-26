@@ -1,9 +1,6 @@
 class UsersController < ApplicationController
 
   def home
-    if !current_user.mentorships[0]
-      redirect_to "/brackets"
-    end
     require 'date'
     @now = DateTime.now
     cookies.delete :mentorship_id
@@ -11,6 +8,9 @@ class UsersController < ApplicationController
       redirect_to "/users/sign_in"
     else
       # GENERATE FEED
+      if !current_user.mentorships[0]
+        redirect_to "/brackets"
+      end
       @comments = helpers.g_comment_feed
       @activities = helpers.g_activity_feed
       @students = helpers.g_student_feed

@@ -5,7 +5,7 @@
 @import 'variables';
 
 .journey-ent {
-	margin: 10px 0 70px;
+	margin: 10px 0 70px 20px;
 	justify-content: space-between;
 }
 
@@ -53,14 +53,14 @@
 	position: relative;
 }
 
-.journey-b-img, .journey-t-img {
+.journey-b-img, .journey-t-img, .journey-s-img {
 	border-radius:100%;
 	overflow: hidden;
 	position: absolute;
 	border: 5px solid rgba(255, 255, 255, 0.5);
 }
 
-.journey-b-img img, .journey-t-img img {
+.journey-b-img img, .journey-t-img img, .journey-s-img img {
 	min-width:100%;
 }
 

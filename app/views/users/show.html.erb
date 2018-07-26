@@ -1,35 +1,43 @@
-<h2><%= @user.displayname %></h2>
-
-<% if @user.avatar.file.nil? %>
-    <%= image_tag 'default_av.png', class: 'user-av' %>
-<% else %>
-	<img src="<%= @user.avatar.url %>" class="user-av">
-<% end %>
-
-<br>
-
-<% if @user.is_admin? %>
-	<i>administrator</i><p>
-<% end %>
-
-<% if @user.mentorships.where("is_complete" => false)[0] %>
-	studying
-	<ul>
-	<% @user.mentorships.each do |m| %>
-		<li><%= m.bracket.title %></li>
+<div id="userwrapper">
+	<% if @user.avatar.file.nil? %>
+	    <%= image_tag 'default_av.png', class: 'user-av' %>
+	<% else %>
+		<img src="<%= @user.avatar.url %>" class="user-av">
 	<% end %>
-	</ul>
-<% end %>
 
-<% if Mentorship.where("teacher" => @user)[0] %>
-	teaches
-	<ul>
-	<% Mentorship.where("teacher" => @user).each do |m| %>
-		<li><%= m.bracket.title %></li>
+	<h2><%= @user.displayname %></h2>
+
+	<% if @user.is_admin? %>
+		<i>administrator</i>
 	<% end %>
-	</ul>
-<% end %>
+	<% if current_user == @user %>
+		<br><%= link_to "edit account", edit_user_registration_path %>
+	<% end %>
+	<p>
 
-<% if current_user == @user %>
-	<%= link_to "edit", edit_user_registration_path %>
-<% end %>
+	<div class="flexed">
+		<div class="user-listed">
+			<% if @user.mentorships.where("is_complete" => false)[0] %>
+				studying
+				<ul>
+				<% @user.mentorships.each do |m| %>
+					<li><%= m.bracket.title %></li>
+				<% end %>
+				</ul>
+			<% end %>
+		</div>
+
+		<div class="user-listed">
+			<% if Mentorship.where("teacher" => @user)[0] %>
+				teaches
+				<ul>
+				<% Mentorship.where("teacher" => @user).each do |m| %>
+					<li><%= m.bracket.title %></li>
+				<% end %>
+				</ul>
+			<% end %>
+		</div>
+	</div>
+
+
+</div>

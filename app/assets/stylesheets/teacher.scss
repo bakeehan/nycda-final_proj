@@ -1,3 +1,35 @@
 // Place all the styles related to the teacher controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import 'variables';
+
+.journey-s-img {
+	width:125px;
+	height: 125px;
+	top: 90px;
+	left: 70px;
+	z-index: 5;
+}
+
+.journey-s-img img {
+	height: 125px;
+}
+
+.journey-ent h3 i {
+	font-size: .9em;
+}
+
+.journey-prog {
+	font-size: .85em;
+}
+
+.journey-prog h4 {
+	font-size: 1.2em;
+}
+
+.b-date {
+	display:block;
+	font-family: $statement-font;
+	font-size: .9em;
+}
